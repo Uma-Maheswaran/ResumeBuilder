@@ -1,0 +1,77 @@
+<div cdkDropList [cdkDropListData]="experienceArray" class="w-full border border-gray-300 block bg-white rounded overflow-hidden" (cdkDropListDropped)="drop($event)">
+  <mat-accordion class="w-full border-b">
+      <div *ngFor="let experience of experienceArray;let experienceIndex=index" cdkDrag class="border-gray-300 text-black flex flex-row items-center justify-between box-border bg-white mb-1 text-base last:border-b-0" >  
+        <mat-expansion-panel hideToggle class="w-full" [(expanded)]="experienceExpansionArray[experienceIndex]">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="flex justify-between">
+              Experience {{experienceIndex}}
+              <button mat-button (click)="remove(experienceIndex)"  class="float-right">
+                <mat-icon>remove</mat-icon>
+              </button>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-card>
+            <mat-card-content>
+                <form [formGroup]="experienceArray[experienceIndex]" class="grid sm:grid-cols-2 grid-cols-1 gap-9 p-10 justify-center items-center">
+                   
+                  <div class="flex justify-center items-center min-w-min">
+                    <mat-form-field class="w-full max-w-md">
+                        <mat-label>Job Title</mat-label>
+                        <input matInput required formControlName="jobTitle">
+                        <mat-error *ngIf="experienceArray[experienceIndex].invalid">Job Title cannot be empty.</mat-error>
+                    </mat-form-field>
+                   </div>
+                   
+                   <div class="flex justify-center items-center min-w-min">
+                    <mat-form-field class="w-full max-w-md">
+                        <mat-label>Employer</mat-label>
+                        <input matInput required formControlName="employer">
+                        <mat-error *ngIf="experienceArray[experienceIndex].invalid">Employer cannot be empty.</mat-error>
+                    </mat-form-field>
+                   </div>  
+                   <div class="flex justify-center items-center min-w-min">
+                    <mat-form-field class="w-full max-w-md">
+                      <mat-label>Enter a date range</mat-label>
+                      <mat-date-range-input [formGroup]="experienceArray[experienceIndex]" [rangePicker]="picker">
+                        <input matStartDate formControlName="start" placeholder="Start date">
+                        <input matEndDate formControlName="end" placeholder="End date">
+                      </mat-date-range-input>
+                      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-date-range-picker #picker></mat-date-range-picker>
+                    
+                      <mat-error *ngIf="experienceArray[experienceIndex].controls['start'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                      <mat-error *ngIf="experienceArray[experienceIndex].controls['end'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
+                    </mat-form-field>
+                   </div>
+                   <div class="flex justify-center items-center min-w-min">
+                    <mat-form-field class="w-full max-w-md">
+                        <mat-label>City</mat-label>
+                        <input matInput required formControlName="city">
+                        <mat-error *ngIf="experienceArray[experienceIndex].invalid">City cannot be empty.</mat-error>
+        
+                    </mat-form-field>
+                   </div>  
+                   <div class="flex justify-center items-center col-span-2">
+                    <mat-form-field class="w-full max-w-md">
+                        <mat-label>Description</mat-label>
+                        <input matInput required formControlName="description">
+                        <mat-error *ngIf="experienceArray[experienceIndex].invalid">Description cannot be empty.</mat-error>
+                    </mat-form-field>
+                   </div>   
+                </form>
+                <div class="flex justify-center items-center">
+                      <button mat-button (click)="nextAction()">Next</button>
+                </div>
+            </mat-card-content>
+        </mat-card>                    
+        </mat-expansion-panel>
+    </div>
+ </mat-accordion>
+ <button mat-button (click)="add() " class="px-2 py-10 border-b h-2 w-full border-gray-300 text-black flex flex-row items-center justify-between box-border cursor-move bg-white text-base last:border-b-0">
+  <mat-icon>add</mat-icon>
+  Add Work Experience
+</button>
+</div>
+
+
