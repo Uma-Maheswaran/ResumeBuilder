@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-header class="mb-8">
+      <mat-card-title>Profile Summary</mat-card-title>
+      <mat-card-subtitle>Write 2-4 short & energetic sentences to interest the reader! Mention your role, experience & most importantly - your biggest achievements, best qualities and skills.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field class="sm:w-2/3 w-full h-64">
+            <mat-label>Summary</mat-label>
+            <textarea [(ngModel)]="summaryString" (ngModelChange)="this.summaryStringChange.emit($event)" matInput></textarea>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions class="flex justify-center items-center">
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </mat-card-actions>
+</mat-card>

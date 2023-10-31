@@ -1,0 +1,62 @@
+<mat-toolbar class="mx-auto border-x justify-between !bg-slate-900 !text-slate-200">
+    <div class="flex justify-between items-center gap-x-2">
+        <span class="">Resume Curator</span>
+        <button mat-icon-button class="pt-1">
+            <mat-icon>badge</mat-icon>
+        </button>
+    </div>
+    <button mat-icon-button (click)="logout()"   data-te-ripple-init
+    data-te-ripple-color="success" class="">
+        <mat-icon>logout</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-stepper orientation="horizontal" #stepper>
+    <mat-step state="profile" [stepControl]="profileForm" label="Profile Details">
+        <ng-template matStepContent>
+            <app-profile [profileForm]="profileForm"></app-profile>
+        </ng-template>
+    </mat-step>
+    <mat-step label="Summary">
+        <ng-template matStepContent>
+         <app-summary  [summaryString]="summaryString" (summaryStringChange)="this.summaryString=$event"></app-summary>
+        </ng-template>
+    </mat-step>
+    <mat-step label="Work History">
+        <ng-template matStepContent>
+            <app-work-experience [experienceArray]="experienceArray" (addNewExperience)="addNewExperience"></app-work-experience>         
+        </ng-template>
+      </mat-step>
+      <mat-step label="Skills">
+        <ng-template matStepContent>
+          <div class="flex justify-center items-center align-middle h-96">
+              <p>This content was rendered lazily</p>
+          </div>
+          <div class="flex justify-center items-center">
+            <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+          </div>
+        </ng-template>
+      </mat-step>
+      <mat-step label="Here we go!">
+        <ng-template matStepContent>
+          <div class="flex justify-center items-center align-middle h-96">
+              <p>This content was rendered lazily</p>
+          </div>
+          <div class="flex justify-center items-center">
+            <button mat-button>Generate PDF</button>
+          </div>
+         
+        </ng-template>
+      </mat-step>
+      <ng-template matStepperIcon="profile">
+        <mat-icon>person</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="phone">
+        <mat-icon>person</mat-icon>
+      </ng-template>
+  </mat-stepper>
+  <li *ngFor="let user of profiles$ | async">
+    {{user}}
+</li>
+  
