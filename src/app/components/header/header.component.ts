@@ -4,7 +4,6 @@ import { Firestore, collectionData, collection, addDoc, updateDoc, query } from 
 import { Experience } from 'src/app/models/experience.model';
 import { Profile } from 'src/app/models/profile.model';
 import { Observable } from 'rxjs';
-import { ResumeForm } from 'src/app/models/form.model';
 
 @Component({
   selector: 'app-header',
